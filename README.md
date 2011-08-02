@@ -12,9 +12,9 @@ As you might have guessed from the name, we're going to write high level accepta
 
 Getting started with Cucumber-Chef is a simple, three step process:
 
-1) Install Cucumber-Chef
-2) Integrate with Hosted Chef and Amazon EC2
-3) Run cucumber-chef setup
+1. Install Cucumber-Chef
+2. Integrate with Hosted Chef and Amazon EC2
+3. Run cucumber-chef setup
 
 ### Installing Cucumber-Chef
 
@@ -82,11 +82,19 @@ Now add the EC2 configuration:
     knife[:aws_secret_access_key] = ENV['AWS_SECRET_ACCESS_KEY']
     knife[:aws_ssh_key_id] = ENV['AWS_SSH_KEY_ID']
     knife[:identity_file] = "/path/to/aws_ssh_key.pem"
+
     knife[:availability_zone] = "eu-west-1a"
     knife[:region] = "eu-west-1"
     knife[:aws_image_id] = "ami-339ca947"
 
-Note that right now Cucumber-Chef only supports Ubuntu-based  test labs.
+    #uncomment these lines if you wish to use US-EAST ZONE
+    #knife[:availability_zone] = "us-east-1b"
+    #knife[:region] = "us-east-1"
+    #knife[:aws_image_id] = "ami-ccf405a5"
+
+
+Note that right now Cucumber-Chef only supports Ubuntu-based test labs.
+(OBS: by now, cucumber-chef doesn't work well on all ubuntu images, so you'd better choose form one of the above examples)
 
 And set your environment variables:
 
@@ -131,10 +139,10 @@ This will create a directory, cucumber-chef, and a subdirectory, example.
 
 Once you've got your test lab set up, and you've generated a project, it's time to crack on with writing a test.  The basic idea is this:
 
-1) An infrastructure requirement is established
-2) Write a cucumber feature that expresses the required behaviour of the infrastructure requirement
-3) Write steps that will build this infrastructure environment on the test lab, using the step definitions provided - these include the ability to create a container, apply roles to it, and destroy it again.
-4) Write cookbooks and recipes and supporting code to make the test pass
+1. An infrastructure requirement is established
+2. Write a cucumber feature that expresses the required behaviour of the infrastructure requirement
+3. Write steps that will build this infrastructure environment on the test lab, using the step definitions provided - these include the ability to create a container, apply roles to it, and destroy it again.
+4. Write cookbooks and recipes and supporting code to make the test pass
 
 ## Running tests
 
